@@ -1,0 +1,39 @@
+package com.example.infraestrutraescolareevasaoescolarapi.entity;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Builder
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+@Table(name = "colegio")
+public class Colegio {
+
+    @Id
+    @Column(name = "id_colegio")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long idColegio;
+    @ManyToOne
+    @JoinColumn(name = "id_cidade", referencedColumnName = "id_cidade")
+    private Cidade cidade;
+    private Integer qtdAtualAlunos;
+    @OneToOne
+    @JoinColumn(name = "id_infra", referencedColumnName = "id_infra")
+    private Infraestrutura infraestrutura;
+}
