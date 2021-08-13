@@ -1,4 +1,4 @@
-package com.example.infraestrutraescolareevasaoescolarapi.entity;
+package br.com.letscode.infraestrutraescolareevasaoescolarapi.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -19,19 +19,15 @@ import javax.persistence.Table;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "infraestrutura")
-public class Infraestrutura {
+@Table(name = "cidade")
+public class Cidade {
 
     @Id
-    @Column(name = "id_infra")
+    @Column(name = "id_cidade")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idInfra;
-    private Boolean eletricidade;
-    private Boolean internet;
-    private Boolean computador;
-    @Column(name = "adaptado_pcd")
-    private Boolean adaptadoPCD;
-    private Boolean agua;
-    @Column(name = "agua_potavel")
-    private Boolean aguaPotavel;
+    private Long idCidade;
+    @Column(name = "nome_aluno")
+    private String nomeAluno;
+    private String estado;
+    private Long populacao;
 }

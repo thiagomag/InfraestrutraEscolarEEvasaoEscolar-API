@@ -1,4 +1,4 @@
-package com.example.infraestrutraescolareevasaoescolarapi.entity;
+package br.com.letscode.infraestrutraescolareevasaoescolarapi.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import java.time.LocalDate;
+import java.util.Random;
 
 @Builder
 @Getter
@@ -42,4 +43,14 @@ public class Aluno {
     private Boolean concluiuEstudos;
     @Column(name = "eh_estudante")
     private Boolean ehEstudante;
+
+    public Aluno(String nomeAluno, Colegio colegio, LocalDate dataNascimento, String serieEscolarAtual, Boolean concluiuEstudos, Boolean ehEstudante) {
+        this.idAluno = new Random().nextLong();
+        this.nomeAluno = nomeAluno;
+        this.colegio = colegio;
+        this.dataNascimento = dataNascimento;
+        this.serieEscolarAtual = serieEscolarAtual;
+        this.concluiuEstudos = concluiuEstudos;
+        this.ehEstudante = ehEstudante;
+    }
 }

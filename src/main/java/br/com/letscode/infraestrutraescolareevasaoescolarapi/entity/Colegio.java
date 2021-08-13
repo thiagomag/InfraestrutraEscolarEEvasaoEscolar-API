@@ -1,4 +1,4 @@
-package com.example.infraestrutraescolareevasaoescolarapi.entity;
+package br.com.letscode.infraestrutraescolareevasaoescolarapi.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -29,6 +29,7 @@ public class Colegio {
     @Column(name = "id_colegio")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idColegio;
+    private String nomeColegio;
     @ManyToOne
     @JoinColumn(name = "id_cidade", referencedColumnName = "id_cidade")
     private Cidade cidade;
