@@ -55,7 +55,7 @@ public class InfraestruturaController {
         return infraestruturaService.buscarPorAguaPotavel(aguaPotavel);
     }
 
-    @PostMapping("/adcionarInfraestrutura")
+    @PostMapping("/adicionarInfraestrutura")
     private Infraestrutura adicionarInfraestrutura(@RequestBody InfraestruturaRequest infraestruturaRequest) {
         return infraestruturaService.adicionarInfraestrutura(infraestruturaRequest);
     }

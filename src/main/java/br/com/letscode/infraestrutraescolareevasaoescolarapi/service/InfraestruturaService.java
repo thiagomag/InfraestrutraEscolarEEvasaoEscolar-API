@@ -50,7 +50,7 @@ public class InfraestruturaService {
     }
 
     public Infraestrutura adicionarInfraestrutura(InfraestruturaRequest infraestruturaRequest) {
-        var infraestrutura = infraestruturaRequest.convert(infraestruturaRepository);
+        var infraestrutura = infraestruturaRequest.convert();
         return infraestruturaRepository.save(infraestrutura);
     }
 }

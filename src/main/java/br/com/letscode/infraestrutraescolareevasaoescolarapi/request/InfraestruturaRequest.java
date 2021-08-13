@@ -15,7 +15,7 @@ public class InfraestruturaRequest {
     private Boolean agua;
     private Boolean aguaPotavel;
 
-    public Infraestrutura convert(InfraestruturaRepository infraestruturaRepository){
+    public Infraestrutura convert(){
         return new Infraestrutura(eletricidade, internet, computador, adaptadoPCD, agua, aguaPotavel);
     }
 }
