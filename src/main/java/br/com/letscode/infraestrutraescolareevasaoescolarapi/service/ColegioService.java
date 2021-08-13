@@ -3,6 +3,7 @@ package br.com.letscode.infraestrutraescolareevasaoescolarapi.service;
 import br.com.letscode.infraestrutraescolareevasaoescolarapi.exceptions.IdDoColegioNaoExisteException;
 import br.com.letscode.infraestrutraescolareevasaoescolarapi.repository.CidadeRepository;
 import br.com.letscode.infraestrutraescolareevasaoescolarapi.repository.ColegioRepository;
+import br.com.letscode.infraestrutraescolareevasaoescolarapi.repository.InfraestruturaRepository;
 import br.com.letscode.infraestrutraescolareevasaoescolarapi.request.ColegioRequest;
 import br.com.letscode.infraestrutraescolareevasaoescolarapi.response.ColegioResponse;
 import lombok.RequiredArgsConstructor;

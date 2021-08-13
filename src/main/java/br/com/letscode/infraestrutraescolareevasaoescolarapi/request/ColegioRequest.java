@@ -4,6 +4,7 @@ import br.com.letscode.infraestrutraescolareevasaoescolarapi.entity.Colegio;
 import br.com.letscode.infraestrutraescolareevasaoescolarapi.exceptions.IdDaCidadeNaoExisteException;
 import br.com.letscode.infraestrutraescolareevasaoescolarapi.exceptions.IdDaInfraestruturaNaoExisteException;
 import br.com.letscode.infraestrutraescolareevasaoescolarapi.repository.CidadeRepository;
+import br.com.letscode.infraestrutraescolareevasaoescolarapi.repository.InfraestruturaRepository;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
