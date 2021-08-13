@@ -5,6 +5,7 @@ import br.com.letscode.infraestrutraescolareevasaoescolarapi.repository.CidadeRe
 import br.com.letscode.infraestrutraescolareevasaoescolarapi.repository.ColegioRepository;
 import br.com.letscode.infraestrutraescolareevasaoescolarapi.repository.InfraestruturaRepository;
 import br.com.letscode.infraestrutraescolareevasaoescolarapi.request.ColegioRequest;
+import br.com.letscode.infraestrutraescolareevasaoescolarapi.request.atualizar.ColegioReqAtualizar;
 import br.com.letscode.infraestrutraescolareevasaoescolarapi.response.ColegioResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -58,5 +59,25 @@ public class ColegioService {
         } else {
             throw new IdDoColegioNaoExisteException(idColegio);
         }
+    }
+
+    public ResponseEntity<ColegioResponse> atualizarColegio(ColegioReqAtualizar colegioReqAtualizar, Long idColegio) {
+        var colegioAtual = colegioRepository.findById(idColegio).orElseThrow(
+                () -> new IdDoColegioNaoExisteException(idColegio));
+        if (colegioReqAtualizar.getNomeColegio() == null) {
+            colegioReqAtualizar.setNomeColegio(colegioAtual.getNomeColegio());
+        }
+        if (colegioReqAtualizar.getIdCidade() == null) {
+            colegioReqAtualizar.setIdCidade(colegioAtual.getCidade().getIdCidade());
+        }
+        if (colegioReqAtualizar.getQtdAtualAlunos() == null) {
+            colegioReqAtualizar.setQtdAtualAlunos(colegioAtual.getQtdAtualAlunos());
+        }
+        if (colegioReqAtualizar.getIdInfraestrutura() == null) {
+            colegioReqAtualizar.setIdInfraestrutura(colegioAtual.getInfraestrutura().getIdInfra());
+        }
+        var colegio = colegioReqAtualizar.convert(cidadeRepository,infraestruturaRepository,idColegio);
+        colegioRepository.save(colegio);
+        return ResponseEntity.ok(new ColegioResponse(colegio));
     }
 }

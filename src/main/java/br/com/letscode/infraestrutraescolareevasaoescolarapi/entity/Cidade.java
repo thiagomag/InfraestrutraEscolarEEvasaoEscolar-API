@@ -26,8 +26,8 @@ public class Cidade {
     @Column(name = "id_cidade")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idCidade;
-    @Column(name = "nome_aluno")
-    private String nomeAluno;
+    @Column(name = "nome_cidade")
+    private String nomeCidade;
     private String estado;
     private Long populacao;
 }
