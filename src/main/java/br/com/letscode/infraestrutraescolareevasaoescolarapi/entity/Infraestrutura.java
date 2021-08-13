@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.Random;
 
 @Builder
 @Getter
@@ -34,4 +35,14 @@ public class Infraestrutura {
     private Boolean agua;
     @Column(name = "agua_potavel")
     private Boolean aguaPotavel;
+
+    public Infraestrutura (Boolean eletricidade, Boolean internet, Boolean computador, Boolean adaptadoPCD, Boolean agua, Boolean aguaPotavel){
+        this.idInfra = new Random().nextLong();
+        this.eletricidade = eletricidade;
+        this.internet = internet;
+        this.computador = computador;
+        this.adaptadoPCD = adaptadoPCD;
+        this.agua = agua;
+        this.aguaPotavel = aguaPotavel;
+    }
 }
