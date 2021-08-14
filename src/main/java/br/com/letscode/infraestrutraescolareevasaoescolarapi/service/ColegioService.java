@@ -55,6 +55,8 @@ public class ColegioService {
     public ResponseEntity<?> apagarColegio(Long idColegio) {
         if(colegioRepository.findById(idColegio).isPresent()) {
             colegioRepository.deleteById(idColegio);
+            var colegio = colegioRepository.findById(idColegio);
+            infraestruturaRepository.deleteById(colegio.get().getInfraestrutura().getIdInfra());
             return ResponseEntity.ok().build();
         } else {
             throw new IdDoColegioNaoExisteException(idColegio);

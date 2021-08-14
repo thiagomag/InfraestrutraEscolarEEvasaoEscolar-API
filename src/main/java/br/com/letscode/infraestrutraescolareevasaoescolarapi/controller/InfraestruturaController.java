@@ -2,10 +2,13 @@ package br.com.letscode.infraestrutraescolareevasaoescolarapi.controller;
 
 import br.com.letscode.infraestrutraescolareevasaoescolarapi.entity.Infraestrutura;
 import br.com.letscode.infraestrutraescolareevasaoescolarapi.request.InfraestruturaRequest;
+import br.com.letscode.infraestrutraescolareevasaoescolarapi.request.atualizar.InfraestruturaReqAtualizar;
 import br.com.letscode.infraestrutraescolareevasaoescolarapi.response.InfraestruturaResponse;
 import br.com.letscode.infraestrutraescolareevasaoescolarapi.service.InfraestruturaService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -60,4 +63,10 @@ public class InfraestruturaController {
         return infraestruturaService.adicionarInfraestrutura(infraestruturaRequest);
     }
 
+    @PatchMapping("atualizarInfraestrutura/{idInfra}")
+    private ResponseEntity<InfraestruturaResponse> infraestruturaAluno(
+            @RequestBody InfraestruturaReqAtualizar infraestruturaReqAtualizar,
+            @PathVariable Long idInfra) {
+        return infraestruturaService.atualizarInfraestrutura(infraestruturaReqAtualizar, idInfra);
+    }
 }

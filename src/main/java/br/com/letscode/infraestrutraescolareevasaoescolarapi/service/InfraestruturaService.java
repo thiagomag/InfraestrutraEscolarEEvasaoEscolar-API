@@ -1,10 +1,13 @@
 package br.com.letscode.infraestrutraescolareevasaoescolarapi.service;
 
 import br.com.letscode.infraestrutraescolareevasaoescolarapi.entity.Infraestrutura;
+import br.com.letscode.infraestrutraescolareevasaoescolarapi.exceptions.IdDaInfraestruturaNaoExisteException;
 import br.com.letscode.infraestrutraescolareevasaoescolarapi.repository.InfraestruturaRepository;
 import br.com.letscode.infraestrutraescolareevasaoescolarapi.request.InfraestruturaRequest;
+import br.com.letscode.infraestrutraescolareevasaoescolarapi.request.atualizar.InfraestruturaReqAtualizar;
 import br.com.letscode.infraestrutraescolareevasaoescolarapi.response.InfraestruturaResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
@@ -53,4 +56,30 @@ public class InfraestruturaService {
         var infraestrutura = infraestruturaRequest.convert();
         return infraestruturaRepository.save(infraestrutura);
     }
+
+    public ResponseEntity<InfraestruturaResponse> atualizarInfraestrutura(InfraestruturaReqAtualizar infraestruturaReqAtualizar, Long idInfra) {
+        var infraestruturaOptional = infraestruturaRepository.findById(idInfra).orElseThrow(() -> new IdDaInfraestruturaNaoExisteException(idInfra));
+        if(infraestruturaReqAtualizar.getEletricidade() == null) {
+            infraestruturaReqAtualizar.setEletricidade(infraestruturaOptional.getEletricidade());
+        }
+        if(infraestruturaReqAtualizar.getInternet() == null) {
+            infraestruturaReqAtualizar.setInternet(infraestruturaOptional.getInternet());
+        }
+        if(infraestruturaReqAtualizar.getComputador() == null) {
+            infraestruturaReqAtualizar.setComputador(infraestruturaOptional.getComputador());
+        }
+        if(infraestruturaReqAtualizar.getAdaptadoPCD() == null) {
+            infraestruturaReqAtualizar.setAdaptadoPCD(infraestruturaOptional.getAdaptadoPCD());
+        }
+        if(infraestruturaReqAtualizar.getAgua() == null) {
+            infraestruturaReqAtualizar.setAgua(infraestruturaOptional.getAgua());
+        }
+        if(infraestruturaReqAtualizar.getAguaPotavel() == null) {
+            infraestruturaReqAtualizar.setAguaPotavel(infraestruturaOptional.getAguaPotavel());
+        }
+        var infraestrutura = infraestruturaReqAtualizar.convert(infraestruturaRepository, idInfra);
+        infraestruturaRepository.save(infraestrutura);
+        return ResponseEntity.ok(new InfraestruturaResponse(infraestrutura));
+    }
+
 }
