@@ -1,8 +1,7 @@
 package br.com.letscode.infraestrutraescolareevasaoescolarapi.controller;
 
-import br.com.letscode.infraestrutraescolareevasaoescolarapi.entity.Cidade;
-import br.com.letscode.infraestrutraescolareevasaoescolarapi.repository.CidadeRepository;
 import br.com.letscode.infraestrutraescolareevasaoescolarapi.response.CidadeResponse;
+import br.com.letscode.infraestrutraescolareevasaoescolarapi.service.CidadeService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,16 +16,15 @@ import java.util.List;
 @RequestMapping("/cidades")
 public class CidadeController {
 
-    private CidadeRepository cidadeRepository;
+    private CidadeService cidadeService;
 
     @GetMapping
-    public List<CidadeResponse> buscarCidades(){
-        List cidades = cidadeRepository.findAll();
-        return CidadeResponse.convert(cidades);
+    public ResponseEntity<List<CidadeResponse>> buscarCidades(){
+        return ResponseEntity.ok().body(cidadeService.buscarCidades());
     }
 
-    @GetMapping("/buscarPor/{idCidade}")
-    public ResponseEntity<Cidade> buscarPorID(@PathVariable Long idCidade){
-        return ResponseEntity.ok().body(cidadeRepository.getById(idCidade));
+    @GetMapping("/{idCidade}")
+    public ResponseEntity<CidadeResponse> buscarPorID(@PathVariable Long idCidade){
+        return ResponseEntity.ok().body(cidadeService.buscarPorId(idCidade));
     }
 }
