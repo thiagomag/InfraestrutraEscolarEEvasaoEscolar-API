@@ -9,7 +9,7 @@ import java.util.List;
 @Repository
 public interface CidadeRepository extends JpaRepository<Cidade, Long> {
 
-    List<Cidade> findByNome(String nomeCidade);
+    List<Cidade> findByNomeCidade(String nomeCidade);
 
     List<Cidade> findByIdCidade(Long idCidade);
 }

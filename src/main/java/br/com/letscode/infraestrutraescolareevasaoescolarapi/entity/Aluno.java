@@ -15,7 +15,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import java.time.LocalDate;
-import java.util.Random;
 
 @Builder
 @Getter
@@ -28,7 +27,7 @@ public class Aluno {
 
     @Id
     @Column(name = "id_aluno")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idAluno;
     @Column(name = "nome_aluno")
     private String nomeAluno;
@@ -45,7 +44,6 @@ public class Aluno {
     private Boolean ehEstudante;
 
     public Aluno(String nomeAluno, Colegio colegio, LocalDate dataNascimento, String serieEscolarAtual, Boolean concluiuEstudos, Boolean ehEstudante) {
-        this.idAluno = new Random().nextLong();
         this.nomeAluno = nomeAluno;
         this.colegio = colegio;
         this.dataNascimento = dataNascimento;

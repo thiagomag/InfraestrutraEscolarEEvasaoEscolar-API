@@ -16,7 +16,7 @@ import java.util.List;
 @RequestMapping("/cidades")
 public class CidadeController {
 
-    private CidadeService cidadeService;
+    private final CidadeService cidadeService;
 
     @GetMapping
     public ResponseEntity<List<CidadeResponse>> buscarCidades(){

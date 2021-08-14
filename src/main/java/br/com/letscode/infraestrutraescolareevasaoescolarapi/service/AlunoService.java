@@ -35,14 +35,18 @@ public class AlunoService {
         return AlunoResponse.convert(alunos);
     }
     
-    public AlunoResponse buscarPorId(Long idAluno) {
-        var aluno = alunoRepository.findById(idAluno).orElseThrow(() -> new IdDoAlunoNaoExisteException(idAluno));
-        return new AlunoResponse(aluno);
+    public ResponseEntity<?> buscarPorId(Long idAluno) {
+        var aluno = alunoRepository.findById(idAluno);
+        if(aluno.isPresent()) {
+            return ResponseEntity.ok().body(new AlunoResponse(aluno.get()));
+        } else {
+            return ResponseEntity.ok().body(new IdDoAlunoNaoExisteException(idAluno));
+        }
     }
 
-    public List<AlunoResponse> buscarPorAnoNascimento(Integer anoNascimeto) {
+    public ResponseEntity<List<AlunoResponse>> buscarPorAnoNascimento(Integer anoNascimeto) {
         var aluno = alunoRepository.findByAnoNascimento(anoNascimeto);
-        return AlunoResponse.convert(aluno);
+        return ResponseEntity.ok().body(AlunoResponse.convert(aluno));
     }
 
     public ResponseEntity<AlunoResponse> adicionarAluno(AlunoRequest alunoRequest, UriComponentsBuilder uriComponentsBuilder) {

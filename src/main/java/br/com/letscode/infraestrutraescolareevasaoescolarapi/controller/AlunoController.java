@@ -41,13 +41,13 @@ public class AlunoController {
     }
 
     @GetMapping("/buscarAluno/buscaPorID/{idAluno}")
-    private AlunoResponse buscarPorId(@PathVariable Long idAluno) {
+    private ResponseEntity<?> buscarPorId(@PathVariable Long idAluno) {
         return alunoService.buscarPorId(idAluno);
     }
 
     @GetMapping("/buscarAluno/buscarPorNascimento/{anoNascimento}")
-    private List<AlunoResponse> buscarPorAnoNascimento(@PathVariable Integer anoNascimeto) {
-        return alunoService.buscarPorAnoNascimento(anoNascimeto);
+    private ResponseEntity<List<AlunoResponse>> buscarPorAnoNascimento(@PathVariable Integer anoNascimento) {
+        return alunoService.buscarPorAnoNascimento(anoNascimento);
     }
 
     @PostMapping("/adcionarAluno")
