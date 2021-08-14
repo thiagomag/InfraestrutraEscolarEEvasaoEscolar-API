@@ -16,7 +16,7 @@ public class CidadeResponse {
         this.estado = cidade.getEstado();
     }
 
-    public List<CidadeResponse> convert(List<Cidade> cidades){
+    public static List<CidadeResponse> convert(List<Cidade> cidades){
         return cidades.stream().map(CidadeResponse::new).collect(Collectors.toList());
     }
 }
