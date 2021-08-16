@@ -11,5 +11,5 @@ public interface CidadeRepository extends JpaRepository<Cidade, Long> {
 
     List<Cidade> findByNomeCidade(String nomeCidade);
 
-    List<Cidade> findByIdCidade(Long idCidade);
+    List<Cidade> findByIdCidade(Integer idCidade);
 }

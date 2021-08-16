@@ -1,26 +1,58 @@
 package br.com.letscode.infraestrutraescolareevasaoescolarapi.service;
 
+import br.com.letscode.infraestrutraescolareevasaoescolarapi.entity.Cidade;
+import br.com.letscode.infraestrutraescolareevasaoescolarapi.exceptions.IdDaCidadeNaoExisteException;
 import br.com.letscode.infraestrutraescolareevasaoescolarapi.repository.CidadeRepository;
+import br.com.letscode.infraestrutraescolareevasaoescolarapi.request.CidadeRequest;
+import br.com.letscode.infraestrutraescolareevasaoescolarapi.request.atualizar.CidadeReqAtualizar;
 import br.com.letscode.infraestrutraescolareevasaoescolarapi.response.CidadeResponse;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.util.UriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
-@AllArgsConstructor
+
 @Service
 @RequiredArgsConstructor
 public class CidadeService {
 
-    private CidadeRepository cidadeRepository;
+    private final CidadeRepository cidadeRepository;
 
     public List<CidadeResponse> buscarCidades(){
         return CidadeResponse.convert(cidadeRepository.findAll());
     }
 
-    public CidadeResponse buscarPorId(Long idCidade){
-        return new CidadeResponse(cidadeRepository.getById(idCidade));
+    public ResponseEntity<?> buscarPorId(Long idCidade) {
+        Cidade cidade = cidadeRepository.getById(idCidade);
+        return cidadeRepository.findById(idCidade).isPresent()
+                ? ResponseEntity.ok().body(new CidadeResponse(cidade))
+                : ResponseEntity.ok().body(new IdDaCidadeNaoExisteException(idCidade));
+    }
+
+    public ResponseEntity<List<CidadeResponse>> buscarPorNomeCidade(String nomeCidade){
+        if(cidadeRepository.findByNomeCidade(nomeCidade).isEmpty()){
+            return ResponseEntity.notFound().build();
+        } else{
+            return ResponseEntity.ok().body(CidadeResponse.convert(cidadeRepository.findByNomeCidade(nomeCidade)));
+        }
+
+    }
+
+    public ResponseEntity<CidadeResponse> incluirCidade(CidadeRequest cidadeRequest, UriComponentsBuilder uriComponentsBuilder){
+        Cidade cidade = cidadeRequest.convert();
+        cidadeRepository.save(cidade);
+        URI uri = uriComponentsBuilder.path("/cidades/{idCidade}").buildAndExpand(cidade.getIdCidade()).toUri();
+        return ResponseEntity.created(uri).body(new CidadeResponse(cidade));
+    }
+
+    public ResponseEntity<?> atualizarCidadePorId(CidadeReqAtualizar cidadeReqAtualizar, Long idCidade){
+        Cidade cidade = cidadeReqAtualizar.convert(idCidade);
+        return cidadeRepository.findById(idCidade).isPresent()
+                ? ResponseEntity.ok().body(new CidadeResponse(cidade))
+                : ResponseEntity.ok().body(new IdDaCidadeNaoExisteException(idCidade));
     }
 
 }
