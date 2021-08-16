@@ -11,6 +11,6 @@ public class CidadeReqAtualizar {
     private Long populacao;
 
     public Cidade convert(Long idCidade){
-        return new Cidade(idCidade,nome,estado, populacao);
+        return Cidade.builder().idCidade(idCidade).nomeCidade(nome).estado(estado).populacao(populacao).build();
     }
 }

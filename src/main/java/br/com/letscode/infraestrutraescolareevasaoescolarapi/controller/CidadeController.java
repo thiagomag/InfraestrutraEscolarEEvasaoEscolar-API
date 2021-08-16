@@ -30,7 +30,7 @@ public class CidadeController {
     }
 
     @GetMapping("/{idCidade}")
-    public ResponseEntity<?> buscarPorID(@PathVariable Long idCidade){
+    public ResponseEntity<CidadeResponse> buscarPorID(@PathVariable Long idCidade){
         return cidadeService.buscarPorId(idCidade);
     }
 

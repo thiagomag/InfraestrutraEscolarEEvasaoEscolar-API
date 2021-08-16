@@ -1,7 +1,6 @@
 package br.com.letscode.infraestrutraescolareevasaoescolarapi.service;
 
 import br.com.letscode.infraestrutraescolareevasaoescolarapi.entity.Cidade;
-import br.com.letscode.infraestrutraescolareevasaoescolarapi.exceptions.IdDaCidadeNaoExisteException;
 import br.com.letscode.infraestrutraescolareevasaoescolarapi.repository.CidadeRepository;
 import br.com.letscode.infraestrutraescolareevasaoescolarapi.request.CidadeRequest;
 import br.com.letscode.infraestrutraescolareevasaoescolarapi.request.atualizar.CidadeReqAtualizar;
@@ -25,11 +24,11 @@ public class CidadeService {
         return CidadeResponse.convert(cidadeRepository.findAll());
     }
 
-    public ResponseEntity<?> buscarPorId(Long idCidade) {
+    public ResponseEntity<CidadeResponse> buscarPorId(Long idCidade) {
         Cidade cidade = cidadeRepository.getById(idCidade);
         return cidadeRepository.findById(idCidade).isPresent()
                 ? ResponseEntity.ok().body(new CidadeResponse(cidade))
-                : ResponseEntity.ok().body(new IdDaCidadeNaoExisteException(idCidade));
+                : ResponseEntity.notFound().build();
     }
 
     public ResponseEntity<List<CidadeResponse>> buscarPorNomeCidade(String nomeCidade){
@@ -48,11 +47,12 @@ public class CidadeService {
         return ResponseEntity.created(uri).body(new CidadeResponse(cidade));
     }
 
-    public ResponseEntity<?> atualizarCidadePorId(CidadeReqAtualizar cidadeReqAtualizar, Long idCidade){
+    public ResponseEntity<CidadeResponse> atualizarCidadePorId(CidadeReqAtualizar cidadeReqAtualizar, Long idCidade){
         Cidade cidade = cidadeReqAtualizar.convert(idCidade);
+        cidadeRepository.save(cidade);
         return cidadeRepository.findById(idCidade).isPresent()
                 ? ResponseEntity.ok().body(new CidadeResponse(cidade))
-                : ResponseEntity.ok().body(new IdDaCidadeNaoExisteException(idCidade));
+                : ResponseEntity.notFound().build();
     }
 
 }
