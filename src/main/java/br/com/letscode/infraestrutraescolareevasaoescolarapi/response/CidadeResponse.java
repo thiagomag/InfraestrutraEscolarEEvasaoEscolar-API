@@ -6,13 +6,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 @Data
 public class CidadeResponse {
-    private Long idCidade;
+
     private String nome;
     private long populacao;
     private String estado;
 
     public CidadeResponse(Cidade cidade){
-        this.idCidade = cidade.getIdCidade();
         this.nome = cidade.getNomeCidade();
         this.populacao = cidade.getPopulacao();
         this.estado = cidade.getEstado();
