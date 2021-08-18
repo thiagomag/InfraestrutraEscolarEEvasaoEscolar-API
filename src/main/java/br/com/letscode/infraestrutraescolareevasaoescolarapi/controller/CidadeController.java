@@ -35,7 +35,7 @@ public class CidadeController {
     }
 
     @GetMapping("/buscar_nome/{nome}")
-    public ResponseEntity<List<CidadeResponse>> buscarPorNome(@PathVariable String nome){
+    public ResponseEntity<?> buscarPorNome(@PathVariable String nome){
         return cidadeService.buscarPorNomeCidade(nome);
     }
 
@@ -46,8 +46,8 @@ public class CidadeController {
     }
 
     @PutMapping("/{idCidade}")
-    public void atualizarCidadePorId(@RequestBody CidadeReqAtualizar cidadeReqAtualizar, @PathVariable Long idCidade){
-        cidadeService.atualizarCidadePorId(cidadeReqAtualizar, idCidade);
+    public ResponseEntity<?> atualizarCidadePorId(@RequestBody CidadeReqAtualizar cidadeReqAtualizar, @PathVariable Long idCidade){
+        return cidadeService.atualizarCidadePorId(cidadeReqAtualizar, idCidade);
     }
 
 }

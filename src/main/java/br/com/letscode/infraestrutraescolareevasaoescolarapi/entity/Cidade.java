@@ -30,4 +30,9 @@ public class Cidade {
     private String estado;
     private Long populacao;
 
+    public Cidade(String nome, String estado, Long populacao) {
+        this.nomeCidade = nome;
+        this.estado = estado;
+        this.populacao = populacao;
+    }
 }

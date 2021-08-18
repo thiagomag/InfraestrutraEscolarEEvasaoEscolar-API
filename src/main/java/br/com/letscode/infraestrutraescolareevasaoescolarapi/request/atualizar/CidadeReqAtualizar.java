@@ -5,12 +5,11 @@ import lombok.Data;
 
 @Data
 public class CidadeReqAtualizar {
-
     private String nome;
     private String estado;
     private Long populacao;
 
     public Cidade convert(Long idCidade){
-        return new Cidade(idCidade,nome,estado, populacao);
+        return Cidade.builder().idCidade(idCidade).nomeCidade(nome).estado(estado).populacao(populacao).build();
     }
 }
