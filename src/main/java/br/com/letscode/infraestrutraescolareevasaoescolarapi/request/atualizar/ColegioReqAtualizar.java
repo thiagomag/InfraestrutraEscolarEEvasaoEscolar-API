@@ -2,9 +2,8 @@ package br.com.letscode.infraestrutraescolareevasaoescolarapi.request.atualizar;
 
 import br.com.letscode.infraestrutraescolareevasaoescolarapi.entity.Colegio;
 import br.com.letscode.infraestrutraescolareevasaoescolarapi.exceptions.IdDaCidadeNaoExisteException;
-import br.com.letscode.infraestrutraescolareevasaoescolarapi.exceptions.IdDaInfraestruturaNaoExisteException;
 import br.com.letscode.infraestrutraescolareevasaoescolarapi.repository.CidadeRepository;
-import br.com.letscode.infraestrutraescolareevasaoescolarapi.repository.InfraestruturaRepository;
+import br.com.letscode.infraestrutraescolareevasaoescolarapi.request.InfraestruturaRequest;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -17,14 +16,12 @@ public class ColegioReqAtualizar {
     private String nomeColegio;
     private Long idCidade;
     private Integer qtdAtualAlunos;
-    private Long idInfraestrutura;
+    private InfraestruturaRequest infraestrutura;
 
-    public Colegio convert(CidadeRepository cidadeRepository,
-                           InfraestruturaRepository infraestruturaRepository, Long idColegio) {
+    public Colegio convert(CidadeRepository cidadeRepository, Long idColegio) {
         var cidade = cidadeRepository.findById(idCidade).orElseThrow(
                 () -> new IdDaCidadeNaoExisteException(idCidade));
-        var infraestrutura = infraestruturaRepository.findById(idInfraestrutura).orElseThrow(
-                () -> new IdDaInfraestruturaNaoExisteException(idInfraestrutura));
+        var infraestrutura = this.infraestrutura.convert();
         return Colegio.builder()
                 .idColegio(idColegio)
                 .nomeColegio(nomeColegio)

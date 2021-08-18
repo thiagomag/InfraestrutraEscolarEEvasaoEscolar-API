@@ -15,7 +15,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import java.util.Random;
 
 @Builder
 @Getter
@@ -40,7 +39,6 @@ public class Colegio {
     private Infraestrutura infraestrutura;
 
     public Colegio(String nomeColegio, Cidade cidade, Integer qtdAtualAlunos, Infraestrutura infraestrutura) {
-        this.idColegio = new Random().nextLong();
         this.nomeColegio = nomeColegio;
         this.cidade = cidade;
         this.qtdAtualAlunos = qtdAtualAlunos;

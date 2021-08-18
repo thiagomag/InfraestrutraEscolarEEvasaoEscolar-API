@@ -1,7 +1,6 @@
 package br.com.letscode.infraestrutraescolareevasaoescolarapi.request;
 
 import br.com.letscode.infraestrutraescolareevasaoescolarapi.entity.Infraestrutura;
-import br.com.letscode.infraestrutraescolareevasaoescolarapi.repository.InfraestruturaRepository;
 import lombok.Builder;
 import lombok.Data;
 

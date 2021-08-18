@@ -37,7 +37,6 @@ public class Infraestrutura {
     private Boolean aguaPotavel;
 
     public Infraestrutura (Boolean eletricidade, Boolean internet, Boolean computador, Boolean adaptadoPCD, Boolean agua, Boolean aguaPotavel){
-        this.idInfra = new Random().nextLong();
         this.eletricidade = eletricidade;
         this.internet = internet;
         this.computador = computador;

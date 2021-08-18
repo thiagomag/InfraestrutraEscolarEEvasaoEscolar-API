@@ -5,6 +5,7 @@ import br.com.letscode.infraestrutraescolareevasaoescolarapi.repository.CidadeRe
 import br.com.letscode.infraestrutraescolareevasaoescolarapi.repository.ColegioRepository;
 import br.com.letscode.infraestrutraescolareevasaoescolarapi.repository.InfraestruturaRepository;
 import br.com.letscode.infraestrutraescolareevasaoescolarapi.request.ColegioRequest;
+import br.com.letscode.infraestrutraescolareevasaoescolarapi.request.InfraestruturaRequest;
 import br.com.letscode.infraestrutraescolareevasaoescolarapi.request.atualizar.ColegioReqAtualizar;
 import br.com.letscode.infraestrutraescolareevasaoescolarapi.response.ColegioResponse;
 import lombok.RequiredArgsConstructor;
@@ -45,7 +46,7 @@ public class ColegioService {
 
     public ResponseEntity<ColegioResponse> adicionarColegio(ColegioRequest colegioRequest,
                                                             UriComponentsBuilder builder) {
-        var colegio = colegioRequest.convert(cidadeRepository,infraestruturaRepository);
+        var colegio = colegioRequest.convert(cidadeRepository);
         colegioRepository.save(colegio);
         var uri = builder.path("/colegio/adicionarcolegio/{id}")
                 .buildAndExpand(colegio.getIdColegio()).toUri();
@@ -75,10 +76,17 @@ public class ColegioService {
         if (colegioReqAtualizar.getQtdAtualAlunos() == null) {
             colegioReqAtualizar.setQtdAtualAlunos(colegioAtual.getQtdAtualAlunos());
         }
-        if (colegioReqAtualizar.getIdInfraestrutura() == null) {
-            colegioReqAtualizar.setIdInfraestrutura(colegioAtual.getInfraestrutura().getIdInfra());
+        if (colegioReqAtualizar.getInfraestrutura() == null) {
+            colegioReqAtualizar.setInfraestrutura(InfraestruturaRequest.builder()
+                    .adaptadoPCD(colegioAtual.getInfraestrutura().getAdaptadoPCD())
+                    .agua(colegioAtual.getInfraestrutura().getAgua())
+                    .aguaPotavel(colegioAtual.getInfraestrutura().getAguaPotavel())
+                    .computador(colegioAtual.getInfraestrutura().getComputador())
+                    .eletricidade(colegioAtual.getInfraestrutura().getEletricidade())
+                    .internet(colegioAtual.getInfraestrutura().getInternet())
+                    .build());
         }
-        var colegio = colegioReqAtualizar.convert(cidadeRepository,infraestruturaRepository,idColegio);
+        var colegio = colegioReqAtualizar.convert(cidadeRepository, idColegio);
         colegioRepository.save(colegio);
         return ResponseEntity.ok(new ColegioResponse(colegio));
     }

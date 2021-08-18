@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.validation.annotation.Validated;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -31,6 +32,7 @@ public class Aluno {
     private Long idAluno;
     @Column(name = "nome_aluno")
     private String nomeAluno;
+    private String sexo;
     @ManyToOne
     @JoinColumn(name = "id_colegio", referencedColumnName = "id_colegio")
     private Colegio colegio;
@@ -43,8 +45,9 @@ public class Aluno {
     @Column(name = "eh_estudante")
     private Boolean ehEstudante;
 
-    public Aluno(String nomeAluno, Colegio colegio, LocalDate dataNascimento, String serieEscolarAtual, Boolean concluiuEstudos, Boolean ehEstudante) {
+    public Aluno(String nomeAluno, String sexo, Colegio colegio, LocalDate dataNascimento, String serieEscolarAtual, Boolean concluiuEstudos, Boolean ehEstudante) {
         this.nomeAluno = nomeAluno;
+        this.sexo = sexo;
         this.colegio = colegio;
         this.dataNascimento = dataNascimento;
         this.serieEscolarAtual = serieEscolarAtual;

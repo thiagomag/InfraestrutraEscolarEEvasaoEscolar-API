@@ -15,6 +15,7 @@ public class AlunoResponse {
 
     private Long idAluno;
     private String nomeAluno;
+    private String sexo;
     private Colegio colegio;
     private LocalDate dataNascimento;
     private String serieEscolarAtual;
@@ -23,10 +24,12 @@ public class AlunoResponse {
 
     public AlunoResponse(Aluno aluno) {
         this.idAluno = aluno.getIdAluno();
+        this.sexo = aluno.getSexo();
         this.nomeAluno = aluno.getNomeAluno();
         this.colegio = aluno.getColegio();
         this.dataNascimento = aluno.getDataNascimento();
         this.serieEscolarAtual = aluno.getSerieEscolarAtual();
+        this.concluiuEstudos = aluno.getConcluiuEstudos();
         this.ehEstudante = aluno.getEhEstudante();
     }
 
