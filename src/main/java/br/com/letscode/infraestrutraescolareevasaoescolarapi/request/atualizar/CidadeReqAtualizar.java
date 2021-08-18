@@ -5,7 +5,6 @@ import lombok.Data;
 
 @Data
 public class CidadeReqAtualizar {
-
     private String nome;
     private String estado;
     private Long populacao;

@@ -7,12 +7,11 @@ import lombok.Data;
 @Builder
 @Data
 public class CidadeRequest {
-    private Long idCidade;
     private String nome;
     private String estado;
     private Long populacao;
 
     public Cidade convert(){
-        return new Cidade(idCidade, nome, estado, populacao);
+        return new Cidade(nome, estado, populacao);
     }
 }
