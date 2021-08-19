@@ -29,4 +29,19 @@ public class RelatorioController {
     public ResponseEntity<String> relatorioEvasaoEscolarPorSexo(@PathVariable String sexo) {
         return relatorioService.relatorioEvasaoEscolarPorSexo(sexo);
     }
+
+    @GetMapping("/evasaoEscolarPorIdade/{anoNascimento}")
+    public ResponseEntity<String> relatorioEvasaoEscolarPorIdade(@PathVariable Integer anoNascimento) {
+        return relatorioService.relatorioEvasaoEscolarPorIdade(anoNascimento);
+    }
+
+    @GetMapping("/infraestrutura")
+    public ResponseEntity<String> relatorioInfraestrutura() {
+        return relatorioService.relatorioInfraestrutura();
+    }
+
+    @GetMapping("/infraestruturaPorEstado/{nome}")
+    public ResponseEntity<String> relatorioInfraestruturaPorEstado(@PathVariable String nome) {
+        return relatorioService.relatorioInfraestruturaPorEstado(nome);
+    }
 }

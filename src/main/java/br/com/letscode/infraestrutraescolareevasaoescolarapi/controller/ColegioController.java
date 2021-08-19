@@ -44,6 +44,11 @@ public class ColegioController {
         return colegioService.buscarPorNomeCidade(nome);
     }
 
+    @GetMapping("/buscarporestado/{nome}")
+    public List<ColegioResponse> buscarPorEstado(@PathVariable String nome) {
+        return colegioService.buscarPorEstado(nome);
+    }
+
     @PostMapping("/adicionarcolegio")
     public ResponseEntity<ColegioResponse> adicionarColegio(ColegioRequest colegioRequest,
                                                             UriComponentsBuilder builder) {
