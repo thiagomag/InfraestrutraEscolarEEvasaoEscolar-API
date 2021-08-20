@@ -61,14 +61,11 @@ public class ColegioService {
     }
 
     public ResponseEntity<?> apagarColegio(Long idColegio) {
-        if(colegioRepository.findById(idColegio).isPresent()) {
-            colegioRepository.deleteById(idColegio);
-            var colegio = colegioRepository.findById(idColegio);
-            infraestruturaRepository.deleteById(colegio.get().getInfraestrutura().getIdInfra());
-            return ResponseEntity.ok().build();
-        } else {
-            throw new IdDoColegioNaoExisteException(idColegio);
-        }
+        var colegio = colegioRepository.findById(idColegio).orElseThrow(() ->
+                new IdDoColegioNaoExisteException(idColegio));
+        colegio.setAtivo(false);
+        colegioRepository.save(colegio);
+        return ResponseEntity.ok().build();
     }
 
     public ResponseEntity<ColegioResponse> atualizarColegio(ColegioReqAtualizar colegioReqAtualizar, Long idColegio) {

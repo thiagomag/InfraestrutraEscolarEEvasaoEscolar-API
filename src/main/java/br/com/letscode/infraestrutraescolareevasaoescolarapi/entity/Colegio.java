@@ -37,6 +37,7 @@ public class Colegio {
     @OneToOne
     @JoinColumn(name = "id_infra", referencedColumnName = "id_infra")
     private Infraestrutura infraestrutura;
+    private Boolean ativo = true;
 
     public Colegio(String nomeColegio, Cidade cidade, Integer qtdAtualAlunos, Infraestrutura infraestrutura) {
         this.nomeColegio = nomeColegio;

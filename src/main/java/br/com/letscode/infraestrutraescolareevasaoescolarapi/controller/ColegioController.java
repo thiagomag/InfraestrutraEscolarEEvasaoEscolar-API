@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -60,7 +61,7 @@ public class ColegioController {
         return colegioService.apagarColegio(id);
     }
 
-    @DeleteMapping("/atualizacolegio/{id}")
+    @PutMapping("/atualizacolegio/{id}")
     public ResponseEntity<ColegioResponse> atualizarColegio(@RequestBody ColegioReqAtualizar colegioReqAtualizar,
                                                            @PathVariable Long id) {
         return colegioService.atualizarColegio(colegioReqAtualizar,id);

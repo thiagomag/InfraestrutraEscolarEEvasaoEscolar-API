@@ -18,6 +18,7 @@ public class ColegioResponse {
     private Cidade cidade;
     private Integer qtdAtualAlunos;
     private Infraestrutura infraestrutura;
+    private Boolean ativo;
 
     public ColegioResponse(Colegio colegio) {
         this.idColegio = colegio.getIdColegio();
@@ -25,6 +26,7 @@ public class ColegioResponse {
         this.cidade = colegio.getCidade();
         this.qtdAtualAlunos = colegio.getQtdAtualAlunos();
         this.infraestrutura = colegio.getInfraestrutura();
+        this.ativo = colegio.getAtivo();
     }
 
     public static List<ColegioResponse> convert(List<Colegio> colegios) {
