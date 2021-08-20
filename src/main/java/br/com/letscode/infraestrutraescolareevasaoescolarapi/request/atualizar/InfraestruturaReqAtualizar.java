@@ -1,7 +1,7 @@
 package br.com.letscode.infraestrutraescolareevasaoescolarapi.request.atualizar;
 
 import br.com.letscode.infraestrutraescolareevasaoescolarapi.entity.Infraestrutura;
-import br.com.letscode.infraestrutraescolareevasaoescolarapi.exceptions.IdDaInfraNaoExisteException;
+import br.com.letscode.infraestrutraescolareevasaoescolarapi.exceptions.IdDaInfraestruturaNaoExisteException;
 import br.com.letscode.infraestrutraescolareevasaoescolarapi.repository.InfraestruturaRepository;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +17,7 @@ public class InfraestruturaReqAtualizar {
     private Boolean aguaPotavel;
 
     public Infraestrutura convert(InfraestruturaRepository infraestruturaRepository, Long idInfra) {
-        infraestruturaRepository.findById(idInfra).orElseThrow(() -> new IdDaInfraNaoExisteException(idInfra));
+        infraestruturaRepository.findById(idInfra).orElseThrow(() -> new IdDaInfraestruturaNaoExisteException(idInfra));
         return Infraestrutura.builder()
                 .idInfra(idInfra)
                 .eletricidade(eletricidade)

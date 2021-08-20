@@ -27,4 +27,19 @@ public class ExceptionHandlerController {
     public final ResponseEntity<ExceptionResponse> handleIdDaInfraestruturaNaoExisteException(IdDaInfraestruturaNaoExisteException ex){
         return new ResponseEntity<>(new ExceptionResponse(ex.getMessage()), HttpStatus.NOT_FOUND);
     }
+
+    @ExceptionHandler(NomeCidadeNaoExisteException.class)
+    public final ResponseEntity<ExceptionResponse> handleNomeCidadeNaoExisteException(NomeCidadeNaoExisteException ex) {
+        return new ResponseEntity<>(new ExceptionResponse(ex.getMessage()), HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(UnableToGetJwtTokenException.class)
+    public final ResponseEntity<ExceptionResponse> handleUnableToGetJwtTokenException(UnableToGetJwtTokenException ex) {
+        return new ResponseEntity<>(new ExceptionResponse(ex.getMessage()), HttpStatus.UNAUTHORIZED);
+    }
+
+    @ExceptionHandler(ExpiredJwtTokenException.class)
+    public final ResponseEntity<ExceptionResponse> handleExpiredJwtTokenException(ExpiredJwtTokenException ex) {
+        return new ResponseEntity<>(new ExceptionResponse(ex.getMessage()), HttpStatus.UNAUTHORIZED);
+    }
 }
