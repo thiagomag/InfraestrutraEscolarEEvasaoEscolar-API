@@ -1,6 +1,6 @@
 ## Relação entre infraestrutura escolar e evasão escolar
 
-API baseado no 17 objetivos de desenvolvimento sustentável da ONU
+API baseado em um dos 17 objetivos de desenvolvimento sustentável da ONU
 
 Os Objetivos de Desenvolvimento Sustentável são um apelo global à ação para acabar com 
 a pobreza, proteger o meio ambiente e o clima e garantir que as pessoas, em todos os 
