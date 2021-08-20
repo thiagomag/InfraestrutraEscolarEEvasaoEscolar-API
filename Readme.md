@@ -1,13 +1,23 @@
-## Relação entre infraestrutura escolar e evasão escolar
+<h1 align="center">Infraestrutura Escolar e Evasão Escolar API</h1>
 
-API baseado em um dos 17 objetivos de desenvolvimento sustentável da ONU
+## Projeto que relaciona a infraestrutura escolar com a taxa de evasão
 
-Os Objetivos de Desenvolvimento Sustentável são um apelo global à ação para acabar com 
-a pobreza, proteger o meio ambiente e o clima e garantir que as pessoas, em todos os 
-lugares, possam desfrutar de paz e de prosperidade. Estes são os objetivos para os 
-quais as Nações Unidas estão contribuindo a fim de que possamos atingir a Agenda 2030 
-no Brasil.
+<hr>
 
-![img.png](img.png)
+### Baseado no Objetivo para o Desenvolvimento Sustentável da ONU Número 4: Educação de qualidade. 
 
-![infraestura](Infra.png)
+![ODS_4](https://github.com/thiagomag/InfraestrutraEscolarEEvasaoEscolar-API/blob/master/ODS_4.png)
+
+## Modelagem ER   
+
+![infraestrura](https://github.com/thiagomag/InfraestrutraEscolarEEvasaoEscolar-API/blob/master/Infra.png)
+
+
+> ### Feito por 
+>
+> - [Arthur Miranda](https://github.com/arthmrnd)   
+> - [Elias Nogueira](https://github.com/lyusk8) 
+> - [José Luiz Alves](https://github.com/luiz92)      
+> - [Thiago Magdalena](https://github.com/thiagomag)      
+
+
