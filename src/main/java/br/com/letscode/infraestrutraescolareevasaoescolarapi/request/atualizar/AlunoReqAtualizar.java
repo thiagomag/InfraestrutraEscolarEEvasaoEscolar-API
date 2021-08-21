@@ -15,6 +15,7 @@ public class AlunoReqAtualizar {
     private String nomeAluno;
     private Long codigoColegio;
     private LocalDate dataNascimento;
+    private String sexo;
     private String serieEscolarAtual;
     private Boolean concluiuEstudos;
     private Boolean ehEstudante;
@@ -26,6 +27,7 @@ public class AlunoReqAtualizar {
                 .nomeAluno(nomeAluno)
                 .colegio(colegio)
                 .dataNascimento(dataNascimento)
+                .sexo(sexo)
                 .serieEscolarAtual(serieEscolarAtual)
                 .concluiuEstudos(concluiuEstudos)
                 .ehEstudante(ehEstudante)

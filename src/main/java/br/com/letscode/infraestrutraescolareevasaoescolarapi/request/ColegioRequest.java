@@ -5,14 +5,15 @@ import br.com.letscode.infraestrutraescolareevasaoescolarapi.exceptions.IdDaCida
 import br.com.letscode.infraestrutraescolareevasaoescolarapi.exceptions.IdDaInfraestruturaNaoExisteException;
 import br.com.letscode.infraestrutraescolareevasaoescolarapi.repository.CidadeRepository;
 import br.com.letscode.infraestrutraescolareevasaoescolarapi.repository.InfraestruturaRepository;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Getter
-@Setter
-@RequiredArgsConstructor
-
+@Builder
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class ColegioRequest {
 
     private String nomeColegio;

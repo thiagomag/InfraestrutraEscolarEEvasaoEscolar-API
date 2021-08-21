@@ -50,10 +50,10 @@ public class ColegioController {
         return colegioService.buscarPorEstado(nome);
     }
 
-    @PostMapping("/adicionarcolegio")
-    public ResponseEntity<ColegioResponse> adicionarColegio(ColegioRequest colegioRequest,
-                                                            UriComponentsBuilder builder) {
-        return colegioService.adicionarColegio(colegioRequest, builder);
+    @PostMapping("/adicionarColegio")
+    private ResponseEntity<ColegioResponse> adicionarColegio(@RequestBody ColegioRequest colegioRequest,
+                                                             UriComponentsBuilder uriComponentsBuilder) {
+        return colegioService.adicionarColegio(colegioRequest, uriComponentsBuilder);
     }
 
     @DeleteMapping("/apagarcolegio/{id}")
